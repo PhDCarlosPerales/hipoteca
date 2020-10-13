@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>¿Cuanto voy a pagar de hipoteca?</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script  type="text/javascript" src="chart.js"></script>
+  	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-180482972-1"></script>
+	
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-180482972-1');
+	</script>
+
+
+	<link rel=stylesheet href="estilo.css" type="text/css"/>
+</head>
+
+<body>
+
+
+	  
+
+
+
+
+
+
+<div id="content-wrap">
+
+	<div class="presentacion">
+		<H1>¿Cuánto voy a pagar de hipoteca?</H1>
+
+		<p>¿Quieres saber cuánto vas a pagar por la hipoteca al final? El total vamos. Porque mes a mes el banco te lo dice, pero ¿Cuánto es el total?</p>
+
+
+		<p>Las reglas básicas que se suelen firmar con los bancos son las siguientes, pongamos un ejemplo: </p>
+		<blockquote>
+			El banco te deja una cantidad, 150.000 € y se lo tienes que devolver en 30 años y el interés que aplicará será el EURIBOR + 1% anual.
+
+			<p>La cuota que vas a pagar es de 482,46€ si el EURIBOR se queda quieto o te haces una hipoteca a tipo fijo. Por lo que 482,46 € por treinta años por doce meses son 173.685,60€. 23.000€ en intereses...</p>
+		</blockquote>
+
+		<p>Pero claro, el EURIBOR es caprichoso ¿Qué pasa si cambia el EURIBOR? Si sube ¿Cuánto tendré que pagar al mes? Y si sube dentro de un tiempo ¿Afectará?</p>
+
+		<p>Ésta página te ayuda a conocer cuánto pagarías si subiera el EURIBOR, aunque no predice cómo va a ir realmente. Para eso tienes la sección de Evolución del URIBOR. Lo que sí te muestra es qué pasaría si el EURIBOR subiera muy rápido, o muy lento, o si subiera y bajara un par de veces. Los escenarios más malos se parecen a la caída del EURIBOR con la crisis del ladrillo, pero al revés.</p>
+
+		<p>Rellena los datos del préstamo y dale a calcular o pulsa el Enter. Si quieres, puedes pegar o cambiar tu previsión del EURIBOR.</p>
+
+	</div>
+
+
+
+
+
+	<div id="primera_linea">
+		<form id="prestamo"  class="login-form bloque_negro" action="javascript:void(0);">
+			<h1>Datos del préstamo</h1>
+	    	<label>Cuantía (€):</label>
+	  		<input name="Euros" value="150000" required/>
+
+	  		<label>Diferencial EURIBOR:</label>
+		    <input name="Diferencial" value="0.0099" required/>
+
+		    <label>Años:</label>
+		    <input name="Años" value="30" id="agnos_amortizacion" onchange="display_agnos()" required/> 
+		 	<button onclick="calcular()" class="btn btn-primary btn-ghost">Calcular</button> 
+		</form>
+		<div id="ph_EURIBOR_custom" class="bloque_negro"><h1>Evolución EURIBOR</h1><div id="ph_EURIBOR_custom_tabla" ></div></div>
+	</div>
+
+	<div class="loading"><div class="loader"></div></div> 
+
+	<div class="presentacion cl_graficas">
+		<p></p>
+		<p></p>
+		En la siguiente gráfica puedes ver los distintos escenarios de la evolución del EURIBOR que planteamos. También está tu propuesta.
+	</div>
+
+	<div class="bloque_negro cl_graficas">
+		<div id="curve_chart" style="width: 900px; height: 500px"></div>
+	</div>	
+	<div class="presentacion cl_graficas">
+		<p></p>
+		<p></p>
+		La siguiente gráfica te muestra cuánto tendrás que pagar al mes en cada uno de los escenarios. Como el EURIBOR cambia, también lo hará tu cuota mensual.
+	</div>
+	<div class="bloque_negro cl_graficas">
+		<div id="money_chart" style="width: 900px; height: 500px"></div>
+	</div>	
+
+
+	<div class="presentacion cl_graficas">
+		<H1>Vale, pero ¿Cuánto voy a pagar de hipoteca al final?</H1>
+		Pues depende del escenario del EURIBOR, aquí tienes un resumen.
+	</div>
+	<div class="bloque_negro cl_graficas">
+		<div id="bar_chart" style="width: 900px; height: 500px"></div>
+	</div>
+	<p></p>
+	<div class="presentacion cl_graficas">
+		<p></p>
+		Si quieres ver los cuadros de amortización, aquí te los dejo. Pincha y se expandirá.
+	</div>
+		<p></p>
+	<div id="tabla_amortizacion" class="table-users"></div>		
+	
+
+
+
+
+
+
+
+
+
+
+
+	<div class="presentacion">
+		
+		<h1>¿Cómo se calcula la cuota de hipoteca?</h1>
+		 Lo más normal en España es el modelo francés, con la siguiente fórmula. 
+
+		<blockquote>
+			 \[Mensualidad = {capital * interes_{mensual}  \over 1 − (1 + i)^{−meses_{pendientes}}}\]
+		</blockquote>
+
+		Para calcular la cuota de cada mes, hay que dividir el interés anual entre 12 y aplicar la fórmula.
+
+		<p>
+		De esta cuota una parte son intereses y otra parte el dinero que hay que devolver al banco (amortización). 
+		Al principio de la hipoteca la cuota sería la siguiente:
+		</p>
+
+
+		<blockquote>
+			<p>Cuota:        482,46 €</p>
+			<p>Intereses:    125,00 €</p>
+			<p>Amortización: 357,46 €</p>
+		</blockquote>	
+
+		Es decir, de los 482.46 € que pagas, 125 € son intereses y lo que le devuelves al banco son 357,46 € y el mes siguiente los intereses se calculan de los 150.000 € menos 357,46 €. 
+		Te has quitado poco de capital y el mes que viene pagarás casi lo mismo de amortización
+		<blockquote>
+			<p>Cuota:        482,46 €</p>
+			<p>Intereses:    124.70 €</p>
+			<p>Amortización: 357.76 €</p>
+		</blockquote>	
+		Consigues pagar 0.30€ menos de intereses y 0.30€ más de capital.
+
+		Hacia el final de la hipoteca, ya pagarás muy pocos interés y la mayoría de capital. A principios del último año los datos serían los siguientes
+		<blockquote>
+			<p>Cuota:        482,46 €</p>
+			<p>Intereses:      4.80 €</p>
+			<p>Amortización: 477.66 €</p>
+		</blockquote>			
+
+
+
+		<h1>¿Es bueno amortizar capital?</h1>
+
+		<p>
+			Bueno, entonces, al principio de la hipoteca, es donde más intereses pago, y después, iré pagando más capital en vez de intereses ¿Puedo adelantar algo de capital, si consigo ahorrar, y así pagar menos interés? Preciasemente a eso se le llama amortizar. Como lo que pagas de intereses y de mensualidad se calcula mes a mes sobre la cantidad de dinero que te queda por devolver al banco, mientras antes devuelvas el dinero, menos intereses pagarás.</p>
+		<p> Cuando amortizas, el banco te da dos opciones, o mantener la mensualidad pero pagando menos años o reducir la mensualidad manteniendo el tiempo de devolución.
+			<ul>
+				<li> Si reduces tiempo: Vas a pagar menos intereses en total. Pero ojo, todos los meses sigues pagando la misma cantidad.</li>
+				<li> Si reduces mensualidad: Vas a pagar más intereses en total, aunque la presión sobre tu cuenta corriente mes a mes es menor.
+				</li>
+			</ul>
+			<p>
+				Cambia los valores en el formulario y verás cómo cambian los totales y las mensualidades. 
+			</p>
+		</p>
+
+		<p>
+
+			<H3>¿Qué conviene al amortizar, pagar menos al mes o durante menos años?</H3>
+			 Es una respuesta compleja, donde intervienen varios factores, entre ellos el índice de vida:  ¿Dentro de 30 años, pagar 500€ de hipoteca será más fácil que hoy? Hace tiempo una barra de pan costaba menos de 100 pesetas y ahora 1€, que al cambio sería un 66% más en 20 años.
+		</p>
+		
+		<p>
+			Pero hay algo más que tener en cuenta, al reducir cuota, si amortizaras todos los meses una cantidad extra (hasta el total de la mensualidad original) conseguirías pagar los mismos interés que si hubieras reducido tiempo. Ojo que normalmente lo bancos o cobran por amortizaciones parciales o no te dejan amortizar menos de una cantidad y podrías no tener la opción de hacer ese pago de la diferencia.
+			</p>
+		<p>
+			Lo bueno de esta estrategia es que si algún mes no quieres o no puedes pagar la mensualidad y la amortización parcial, podrías pagar sólo la mensualidad. Si has amortizado años, no tienes esa opción.
+		</p>
+
+
+
+	</div>
+</div>
+
+
+	<div class="footer">
+  		<p>Carlos Perales Graván https://github.com/PhDCarlosPerales</p>
+	</div>
+ -->
+</body>
+
+</html>

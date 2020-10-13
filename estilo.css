@@ -1,0 +1,318 @@
+:root {
+ --primary-color:hsl(196, 78%, 61%);
+ --secondary-color:hsl(217, 15%, 83%);
+ --primary-color-darker:hsl(196, 68%, 54%);
+ --secondary-color-darker:hsl(215, 13%, 70%);
+ --primary-color-lighter:hsl(196, 78%, 81%);
+
+ /* Color Theme Swatches in Hex */
+  --Azul-monocromaticos-1-hex:#1C88EC;
+  --Azul-monocromaticos-2-hex:#4A7FB0;
+  --Azul-monocromaticos-3-hex:#135CA0;
+  --Azul-monocromaticos-4-hex:#63AAEC;
+  --Azul-monocromaticos-5-hex:#0D3F6D;
+  --Azul-monocromaticos-3-hex-gradiente:linear-gradient(to bottom right, #135CA0, #0D3F6D);/*#135CA0;*/
+  
+  --color_letras: white;
+}
+
+.btn {
+ --btn-padding:12px 20px;
+ --btn-border-width:1px;
+ --btn-border-style:solid;
+ --btn-border-color:var(--secondary-color);
+ --btn-radius:4px;
+ position:relative;
+ padding:var(--btn-padding);
+ color:var(--btn-color,#000);
+ background:var(--btn-bg,#fff);
+ border:var(--btn-border-width) var(--btn-border-style) var(--btn-border-color);
+ border-radius:var(--btn-radius)
+}
+.btn-primary {
+ --btn-color:white;
+ --btn-bg:var(--primary-color);
+ --btn-border-color:var(--btn-bg)
+}
+.btn-ghost {
+ --btn-color:var(--btn-bg);
+ --btn-border-color:var(--btn-bg);
+ background:0 0;
+ transition:.3s;
+}
+.btn-ghost:hover {
+ --btn-color:white;
+ background:var(--btn-bg)
+}
+
+
+
+body {
+  background-color: #c2e9fb; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom right, #e4efe9, #93a5cf);
+  min-height: 100vh;
+  max-width:1500px;
+  margin:15px auto;
+}
+
+.btn {
+  padding: 8px 20px;
+  border-radius: 0;
+  overflow: hidden;
+}
+.btn::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, var(--primary-color), transparent);
+  transform: translateX(-100%);
+  transition: 0.6s;
+}
+.btn:hover {
+  background: transparent;
+  box-shadow: 0 0 20px 10px rgba(51, 152, 219, 0.5);
+}
+.btn:hover::before {
+  transform: translateX(100%);
+}
+
+.bloque_negro{
+  background: var(--Azul-monocromaticos-3-hex-gradiente);
+  border-radius: 10px;
+  box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109), 0 1px 1px rgba(128, 128, 128, 0.155), 0 2.1px 2.1px rgba(128, 128, 128, 0.195), 0 4.4px 4.4px rgba(128, 128, 128, 0.241), 0 12px 12px rgba(128, 128, 128, 0.35);
+  margin: 5px;
+  color: var(--color_letras);
+}
+
+.login-form {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+.login-form h1 {
+  margin: 0 0 24px 0;
+}
+.login-form .btn {
+  width: 100%;
+  margin: 18px 0 9px 0;
+}
+
+.login-form input{
+  text-align: center; 
+}
+
+#ph_EURIBOR_custom_tabla{
+  display: inline-flex; 
+  flex-wrap: wrap;
+  align-items: stretch;
+  
+}
+#ph_EURIBOR_custom{
+  padding: 20px;
+}
+#ph_EURIBOR_custom h1 {
+  margin: 0 0 24px 0;
+}
+
+.input_EURIBOR{
+  display: block;
+}
+
+.div_input_EURIBOR{
+  flex-shrink: 1;
+  flex-basis: 3%;
+}
+#primera_linea{
+  display:flex;
+}
+
+
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+  }
+  to { 
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.dropdown {
+   animation: fade 2s linear forwards;
+}
+
+.cl_graficas {
+  display: none;
+  margin: 1em auto;
+}
+
+
+
+.collapsible {
+  background-color: var(--Azul-monocromaticos-5-hex);
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color:  var(--Azul-monocromaticos-5-hex);
+}
+
+.content {
+  padding: 0 20px ; 
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: var(--Azul-monocromaticos-3-hex);
+  color: var(--color_letras);
+}
+
+
+
+/*Tabla*/
+
+.table-users {
+  border: 1px solid #327a81;
+  border-radius: 10px;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+  max-width: calc(100% - 2em);
+  margin: 1em auto;
+  overflow: hidden;
+  /*! width: 800px; */
+  display: inline-block;
+}
+.header{
+  background-color: var(--Azul-monocromaticos-5-hex);
+  padding: 10px;
+  border-radius: 5px;
+  margin: -5px 0px 10px 0px;
+  display: inline-block;
+}
+
+table {
+  width: 100%;
+}
+table td, table th {
+  color: var(--color_letra);
+  padding: 5px 15px;
+  
+}
+table td {
+  text-align: center;
+  vertical-align: middle;
+}
+table td:last-child {
+  /*! font-size: 0.95em; */
+  /*! line-height: 1.4; */
+  /*! text-align: left; */
+}
+table th {
+  background-color: var(--Azul-monocromaticos-3-hex);
+  font-weight: bold;
+  text-decoration: underline;
+  color:var(--color_letras);
+}
+
+table tr:nth-child(2n) {
+  background-color: var(--Azul-monocromaticos-3-hex);
+}
+table tr:nth-child(2n+1) {
+  background-color: var(--Azul-monocromaticos-2-hex);
+}
+table tr:nth-child(12n+1) {
+  background-color: var(--Azul-monocromaticos-1-hex);
+}
+.presentacion h1{
+  font-size: 48px;
+  text-align:center;
+}
+.presentacion{
+  text-align:justify;
+  font-size: 21px;
+  margin: 5px;
+}
+
+blockquote {
+  background: var(--Azul-monocromaticos-2-hex);
+  border-left: 10px solid var(--Azul-monocromaticos-4-hex);
+  padding: 0.5em 10px 2px 10px;
+  color: var(--color_letras);
+}
+blockquote:before {
+  color: #ccc;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: var(--Azul-monocromaticos-5-hex);
+  color: var(--color_letras);
+  text-align: center;
+  height: 2.5rem;            /* Footer height */
+}
+
+#content-wrap {
+  padding-bottom: 2.5rem;    /* Footer height */
+}
+
+
+/*
+#loading-img {
+    background: url(https://i1.wp.com/cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif) center center no-repeat;
+    height: 100%;
+
+}*/
+
+.loading {
+    background: #a3a3a3;
+    display: none;
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    opacity: 0.5;
+    z-index: 20;
+}
+
+.loader {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: spin 2s linear infinite;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
